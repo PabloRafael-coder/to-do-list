@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    height: 200px;
+    background: var(--gray-700);
+}
+
+.headerText {
+    color: var(--blue);
+    font-weight: bolder;
+}
+
+.headerText span {
+    color: var(--purple-dark);
+}
+
+.taskInputContainer {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: -10px;
+}
