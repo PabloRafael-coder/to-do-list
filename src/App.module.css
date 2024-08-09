@@ -7,12 +7,12 @@
     background: var(--gray-700);
 }
 
-.headerText {
+.headerTitle {
     color: var(--blue);
     font-weight: bolder;
 }
 
-.headerText span {
+.headerTitle span {
     color: var(--purple-dark);
 }
 
@@ -20,5 +20,41 @@
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: -10px;
+    margin-top: -25px;
+}
+
+.taskInput {
+    width: 39.87rem;
+    height: 54px;
+    padding: 0 1rem 0 1rem;
+
+    background: var(--gray-500);
+    color: var(--gray-300);
+
+    font-size: 1rem;
+    border: 1px solid var(--gray-700);
+    border-radius: 8px;
+    outline: none;
+}
+
+.taskInputButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    width: 5.62rem;
+    height: 52px;
+    padding: 1rem;
+
+    font-weight: bold;
+    background: var(--blue-dark);
+    color: var(--gray-100);
+    border: none;
+    border-radius: 8px;
+}
+
+.taskListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem
 }
