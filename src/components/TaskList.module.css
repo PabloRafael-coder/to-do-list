@@ -1,0 +1,44 @@
+
+.taskList {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    max-width: 46rem;
+    height: 72px;
+    border-radius: 8px;
+    background: var(--gray-400);
+}
+
+.taskList input {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--blue);
+    border-radius: 50%;
+    position: relative;
+    background: var(--gray-500);
+}
+
+.taskList input:checked:before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    background: var(--purple-dark);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../assets/Vector.svg');
+    border: none;
+
+}
+
+.taskList p {
+    font-size: 14px;
+    color: var(--gray-100);
+
+}
