@@ -4,7 +4,19 @@ import rocket from './assets/rocket.svg'
 import plus from './assets/plus.svg';
 import clipboard from './assets/Clipboard.svg'
 import "./global.css"
+import { TaskList } from './components/TaskList';
+import { useState } from 'react';
+
+
 function App() {
+  const [taskList, setTaskList] = useState([
+    'Realizar o treinamento físico',
+    'Realizar o treinamento físico',
+    'Realizar o treinamento físico',
+    'Realizar o treinamento físico',
+    'Realizar o treinamento físico',
+
+  ])
 
   return (
     <>
@@ -24,6 +36,9 @@ function App() {
               <p className={styles.headerTextCompleted}>Concluídas<span>0</span></p>
             </header>
             <div className={styles.taskListContent}>
+              {
+                taskList.map(task => <TaskList content={task} />)
+              }
               <img src={clipboard} />
               <div className={styles.contentListText}>
                 <p className={styles.taskListText}>Você ainda não tem tarefas cadastradas</p>
