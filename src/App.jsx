@@ -9,15 +9,7 @@ import { useState } from 'react';
 
 
 function App() {
-  const [taskList, setTaskList] = useState([
-    'Realizar o treinamento físico',
-    'Realizar o treinamento físico',
-    'Realizar o treinamento físico',
-    'Realizar o treinamento físico',
-    'Realizar o treinamento físico',
-
-  ])
-
+  const [taskList, setTaskList] = useState([])
   return (
     <>
       <header className={styles.header}>
