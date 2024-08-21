@@ -1,9 +1,7 @@
 import styles from './TaskList.module.css'
-
 import trash from '../assets/trash.svg'
 
 export function TaskList(props) {
-    console.log(props)
     return (
         <>
             <div className={styles.taskList}>
