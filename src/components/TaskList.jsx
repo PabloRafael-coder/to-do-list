@@ -5,15 +5,9 @@ export function TaskList(props) {
     return (
         <>
             <div className={styles.taskList}>
-                <div>
-                    <input type="checkbox" />
-                </div>
-                <p>
-                    {props.content}
-                </p>
-                <div>
-                    <img src={trash} alt="" />
-                </div>
+                <input type="checkbox" />
+                <p>{props.content}</p>
+                <img src={trash} alt="" />
             </div>
         </>
     )

@@ -1,10 +1,11 @@
 
 .taskList {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 12px;
     padding: 0 16px;
-    max-width: 46rem;
+    width: 46rem;
     height: 72px;
     border-radius: 8px;
     background: var(--gray-400);
@@ -38,6 +39,7 @@
 }
 
 .taskList p {
+    width: 40rem;
     font-size: 14px;
     color: var(--gray-100);
 

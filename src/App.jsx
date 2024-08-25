@@ -9,7 +9,19 @@ import { useState } from 'react';
 
 
 function App() {
-  const [taskList, setTaskList] = useState([])
+  const [tasks, setTasks] = useState([])
+  const [newTaskText, setNewTaskText] = useState('')
+
+  function handleCreateNewTask() {
+    event.preventDefault();
+    setTasks([...tasks, newTaskText])
+    setNewTaskText('');
+  }
+
+  function handleNewTaskChange() {
+    setNewTaskText(event.target.value);
+  }
+
   return (
     <>
       <header className={styles.header}>
@@ -18,10 +30,17 @@ function App() {
       </header>
       <main>
         <section>
-          <div className={styles.taskInputContainer}>
-            <input className={styles.taskInput} type="text" placeholder="Adicione uma nova tarefa" />
-            <button className={styles.taskInputButton}>Criar <img src={plus} /></button>
-          </div>
+          <form onSubmit={handleCreateNewTask} className={styles.taskInputContainer}>
+            <input
+              onChange={handleNewTaskChange}
+              className={styles.taskInput}
+              name='task'
+              type="text"
+              placeholder="Adicione uma nova tarefa"
+              value={newTaskText}
+            />
+            <button className={styles.taskInputButton}>Criar<img src={plus} /></button>
+          </form>
           <div className={styles.taskListContainer}>
             <header className={styles.taskListHeader}>
               <p className={styles.headerTextCreated}>Tarefas criadas<span>0</span></p>
@@ -29,7 +48,9 @@ function App() {
             </header>
             <div className={styles.taskListContent}>
               {
-                taskList.map(task => <TaskList content={task} />)
+                tasks.map(task => {
+                  return <TaskList content={task} />
+                })
               }
               <img src={clipboard} />
               <div className={styles.contentListText}>
