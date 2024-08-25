@@ -39,7 +39,7 @@
 }
 
 .taskList p {
-    width: 40rem;
+    width: 100%;
     font-size: 14px;
     color: var(--gray-100);
 
