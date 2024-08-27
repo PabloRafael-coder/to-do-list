@@ -21,7 +21,13 @@
     border: 2px solid var(--blue);
     border-radius: 50%;
     position: relative;
-    background: var(--gray-500);
+    background: var(--gray-700);
+}
+
+.taskList input:hover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .taskList input:checked:before{
@@ -42,5 +48,9 @@
     width: 100%;
     font-size: 14px;
     color: var(--gray-100);
+}
 
+.taskList img {
+    width: 12.48px;
+    height: 14px;
 }
