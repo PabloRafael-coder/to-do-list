@@ -71,6 +71,12 @@ main {
     gap: 1.5rem
 }
 
+.taskListCreate {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
 .taskListHeader {
     display: flex;
     justify-content: space-between;
@@ -83,6 +89,7 @@ main {
     gap: 16px;
     border-top: 1px solid var(--gray-400);
     border-radius: 8px;
+    padding: 64px 24px;
 }
 
 .headerTextCreated {
