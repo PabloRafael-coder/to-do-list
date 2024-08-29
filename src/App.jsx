@@ -46,20 +46,23 @@ function App() {
               <p className={styles.headerTextCreated}>Tarefas criadas<span>0</span></p>
               <p className={styles.headerTextCompleted}>Concluídas<span>0</span></p>
             </header>
-            <div className={styles.taskListContent}>
+            <div className={styles.taskListCreate}>
               {
                 tasks.length > 0 ? (
                   tasks.map(task => {
                     return <TaskList content={task} />
                   }
                   )) : (
-                  <>
+                  <div className={styles.taskListContent}>
                     <img src={clipboard} />
                     <div className={styles.contentListText}>
-                      <p className={styles.taskListText}>Você ainda não tem tarefas cadastradas</p>
+                      <p
+                        className={styles.taskListText}>
+                        Você ainda não tem tarefas cadastradas
+                      </p>
                       <p>Crie tarefas e organize seus itens a fazer</p>
                     </div>
-                  </>
+                  </div>
                 )
               }
             </div>
