@@ -1,13 +1,19 @@
 import styles from './TaskList.module.css'
-import trash from '../assets/trash.svg'
+import { Trash } from '@phosphor-icons/react'
 
-export function TaskList(props) {
+export function TaskList({ content }) {
     return (
         <>
-            <div className={styles.taskList}>
-                <input type="checkbox" />
-                <p>{props.content}</p>
-                <img src={trash} alt="" />
+            <div className={styles.taskElementContainer}>
+                <div className={styles.inputContainer}>
+                    <input type="checkbox" />
+                </div>
+                <div className={styles.textContainer}>
+                    <p>{content}</p>
+                </div>
+                <div className={styles.trashContainer}>
+                    <Trash className={styles.colorTrash} />
+                </div>
             </div>
         </>
     )
