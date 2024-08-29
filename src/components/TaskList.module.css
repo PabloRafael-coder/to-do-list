@@ -1,5 +1,5 @@
 
-.taskList {
+.taskElementContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,32 +8,38 @@
     width: 46rem;
     height: 72px;
     border-radius: 8px;
-    background: var(--gray-400);
+    background: var(--gray-500);
 }
 
-.taskList input {
+.inputContainer {
+    width: 24px;
+    height: 24px;
+}
+
+.inputContainer input {
     appearance: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 17.45px;
+    height: 17.45px;
     border: 2px solid var(--blue);
     border-radius: 50%;
     position: relative;
     background: var(--gray-700);
 }
 
-.taskList input:hover {
+.inputContainer input:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgb(30,111,159, 0.2);
 }
 
-.taskList input:checked:before{
+.inputContainer input:checked::before{
     content: '';
-    width: 20px;
-    height: 20px;
+    width: 17.45px;
+    height: 17.45px;
     border-radius: 50%;
     position: absolute;
     background: var(--purple-dark);
@@ -41,16 +47,37 @@
     background-position: center;
     background-image: url('../assets/Vector.svg');
     border: none;
-
 }
 
-.taskList p {
+.inputContainer input:hover:checked::before{
+    background: var(--purple);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../assets/Vector.svg');
+}
+
+.textContainer {
     width: 100%;
+}
+
+.textContainer p {
+    width: 100%;
+    line-height: 140%;
     font-size: 14px;
     color: var(--gray-100);
 }
 
-.taskList img {
-    width: 12.48px;
-    height: 14px;
+.trashContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: var(--gray-300);
+    width: 24px;
+    height: 24px;
+}
+
+.trashContainer:hover {
+    background: var(--gray-400);
+    color: var(--danger);
 }
