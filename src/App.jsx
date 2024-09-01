@@ -12,14 +12,23 @@ function App() {
   const [tasks, setTasks] = useState([])
   const [newTaskText, setNewTaskText] = useState('')
 
-  function handleCreateNewTask() {
+  function handleCreateNewTask(event) {
     event.preventDefault();
-    setTasks([...tasks, newTaskText])
+    const newTask = { text: newTaskText, completed: false }
+    setTasks([...tasks, newTask])
     setNewTaskText('');
   }
 
-  function handleNewTaskChange() {
+  function handleNewTaskChange(event) {
     setNewTaskText(event.target.value);
+  }
+
+  function DeleteTask(taskDelete) {
+    const taskWithoutDeleted = tasks.filter(task => {
+      return task !== taskDelete
+    })
+
+    setTasks(taskWithoutDeleted)
   }
 
   return (
@@ -30,7 +39,9 @@ function App() {
       </header>
       <main>
         <section>
-          <form onSubmit={handleCreateNewTask} className={styles.taskInputContainer}>
+          <form
+            onSubmit={handleCreateNewTask}
+            className={styles.taskInputContainer}>
             <input
               onChange={handleNewTaskChange}
               className={styles.taskInput}
@@ -43,27 +54,29 @@ function App() {
           </form>
           <div className={styles.taskListContainer}>
             <header className={styles.taskListHeader}>
-              <p className={styles.headerTextCreated}>Tarefas criadas<span>0</span></p>
-              <p className={styles.headerTextCompleted}>Concluídas<span>0</span></p>
+              <p className={styles.headerTextCreated}>Tarefas criadas<span>{tasks.length}</span></p>
+              <p className={styles.headerTextCompleted}>Concluídas<span>2 de {tasks.length}</span></p>
             </header>
             <div className={styles.taskListCreate}>
               {
-                tasks.length > 0 ? (
-                  tasks.map(task => {
-                    return <TaskList content={task} />
-                  }
-                  )) : (
-                  <div className={styles.taskListContent}>
-                    <img src={clipboard} />
-                    <div className={styles.contentListText}>
-                      <p
-                        className={styles.taskListText}>
-                        Você ainda não tem tarefas cadastradas
-                      </p>
-                      <p>Crie tarefas e organize seus itens a fazer</p>
+                tasks.length > 0 ?
+                  (
+                    tasks.map(task => {
+                      return <TaskList content={task.text} onDeleteTask={DeleteTask} />
+                    })
+                  ) :
+                  (
+                    <div className={styles.taskListContent}>
+                      <img src={clipboard} />
+                      <div className={styles.contentListText}>
+                        <p
+                          className={styles.taskListText}>
+                          Você ainda não tem tarefas cadastradas
+                        </p>
+                        <p>Crie tarefas e organize seus itens a fazer</p>
+                      </div>
                     </div>
-                  </div>
-                )
+                  )
               }
             </div>
           </div>
