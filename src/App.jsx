@@ -14,6 +14,7 @@ function App() {
 
   function handleCreateNewTask(event) {
     event.preventDefault();
+
     const newTask = { text: newTaskText, completed: false }
     setTasks([...tasks, newTask])
     setNewTaskText('');
@@ -25,7 +26,7 @@ function App() {
 
   function DeleteTask(taskDelete) {
     const taskWithoutDeleted = tasks.filter(task => {
-      return task !== taskDelete
+      return task.text !== taskDelete
     })
 
     setTasks(taskWithoutDeleted)
