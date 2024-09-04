@@ -62,11 +62,19 @@
     width: 100%;
 }
 
-.textContainer p {
+.textContainer .textWithoutDecorate {
     width: 100%;
     line-height: 140%;
     font-size: 14px;
     color: var(--gray-100);
+}
+
+.textContainer .textDecorate {
+    width: 100%;
+    line-height: 140%;
+    font-size: 14px;
+    color: var(--gray-300);
+    text-decoration: line-through;
 }
 
 .trashContainer {
