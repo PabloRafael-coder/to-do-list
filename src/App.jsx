@@ -11,6 +11,12 @@ import { useState } from 'react';
 function App() {
   const [tasks, setTasks] = useState([])
   const [newTaskText, setNewTaskText] = useState('')
+  const [tasksNumberCompleted, setTasksNumberCompleted] = useState(0)
+  console.log(tasksNumberCompleted)
+
+  function increaseNumberCompletedTasks(isChecked) {
+    setTasksNumberCompleted(number => isChecked ? number + 1 : number - 1)
+  }
 
   function handleCreateNewTask(event) {
     event.preventDefault();
@@ -30,6 +36,7 @@ function App() {
     })
 
     setTasks(taskWithoutDeleted)
+    setTasksNumberCompleted(number => number - 1)
   }
 
   return (
@@ -56,14 +63,21 @@ function App() {
           <div className={styles.taskListContainer}>
             <header className={styles.taskListHeader}>
               <p className={styles.headerTextCreated}>Tarefas criadas<span>{tasks.length}</span></p>
-              <p className={styles.headerTextCompleted}>Concluídas<span>2 de {tasks.length}</span></p>
+              <p className={styles.headerTextCompleted}>Concluídas<span>{tasksNumberCompleted} de {tasks.length}</span></p>
             </header>
             <div className={styles.taskListCreate}>
               {
                 tasks.length > 0 ?
                   (
-                    tasks.map(task => {
-                      return <TaskList content={task.text} onDeleteTask={DeleteTask} />
+                    tasks.map((task, index) => {
+                      return (<TaskList
+                        key={index}
+                        content={task.text}
+                        onDeleteTask={DeleteTask}
+                        isChecked={task.completed}
+                        onIncreaseNumberCompletedTasks={increaseNumberCompletedTasks}
+                      />
+                      )
                     })
                   ) :
                   (
