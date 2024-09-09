@@ -1,18 +1,18 @@
-import styles from './App.module.css'
+import { useState } from 'react';
+import { TaskList } from './components/TaskList';
+import { v4 as uuid4 } from 'uuid'
 
 import rocket from './assets/rocket.svg'
 import plus from './assets/plus.svg';
 import clipboard from './assets/Clipboard.svg'
-import "./global.css"
-import { TaskList } from './components/TaskList';
-import { useState } from 'react';
 
+import styles from './App.module.css'
+import "./global.css"
 
 function App() {
   const [tasks, setTasks] = useState([])
   const [newTaskText, setNewTaskText] = useState('')
   const [tasksNumberCompleted, setTasksNumberCompleted] = useState(0)
-  console.log(tasksNumberCompleted)
 
   function increaseNumberCompletedTasks(isChecked) {
     setTasksNumberCompleted(number => isChecked ? number + 1 : number - 1)
@@ -21,22 +21,24 @@ function App() {
   function handleCreateNewTask(event) {
     event.preventDefault();
 
-    const newTask = { text: newTaskText, completed: false }
+    const newTask = { id: uuid4(), title: newTaskText, isCompleted: false }
+
     setTasks([...tasks, newTask])
     setNewTaskText('');
   }
 
-  function handleNewTaskChange(event) {
+  function handleNewValueTask(event) {
     setNewTaskText(event.target.value);
   }
 
-  function DeleteTask(taskDelete) {
+  function DeleteTask(isChecked, idDeleted) {
+
     const taskWithoutDeleted = tasks.filter(task => {
-      return task.text !== taskDelete
+      return task.id !== idDeleted
     })
 
     setTasks(taskWithoutDeleted)
-    setTasksNumberCompleted(number => number - 1)
+    setTasksNumberCompleted(number => isChecked ? number - 1 : number)
   }
 
   return (
@@ -51,7 +53,7 @@ function App() {
             onSubmit={handleCreateNewTask}
             className={styles.taskInputContainer}>
             <input
-              onChange={handleNewTaskChange}
+              onChange={handleNewValueTask}
               className={styles.taskInput}
               name='task'
               type="text"
@@ -69,12 +71,13 @@ function App() {
               {
                 tasks.length > 0 ?
                   (
-                    tasks.map((task, index) => {
+                    tasks.map(task => {
                       return (<TaskList
-                        key={index}
-                        content={task.text}
+                        key={task.id}
+                        idDeleted={task.id}
+                        content={task.title}
                         onDeleteTask={DeleteTask}
-                        isChecked={task.completed}
+                        isChecked={task.isCompleted}
                         onIncreaseNumberCompletedTasks={increaseNumberCompletedTasks}
                       />
                       )
