@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import styles from './TaskList.module.css'
 import { Trash } from '@phosphor-icons/react'
+import styles from './TaskList.module.css'
 
-export function TaskList({ content, onDeleteTask, isChecked, onIncreaseNumberCompletedTasks }) {
+
+export function TaskList({ content, onDeleteTask, isChecked, onIncreaseNumberCompletedTasks, idDeleted }) {
     const [checked, setChecked] = useState(isChecked)
 
     function handleInputTask(event) {
@@ -12,7 +13,7 @@ export function TaskList({ content, onDeleteTask, isChecked, onIncreaseNumberCom
     }
 
     function handleDeleteTask() {
-        onDeleteTask(content);
+        onDeleteTask(checked, idDeleted);
     }
 
     return (
