@@ -10,9 +10,10 @@ import styles from './App.module.css'
 import "./global.css"
 
 function App() {
-  const [tasks, setTasks] = useState([])
-  const [newTaskText, setNewTaskText] = useState('')
-  const [tasksNumberCompleted, setTasksNumberCompleted] = useState(0)
+  const [tasks, setTasks] = useState([]);
+  const [newTaskText, setNewTaskText] = useState('');
+  const [tasksNumberCompleted, setTasksNumberCompleted] = useState(0);
+
 
   function increaseNumberCompletedTasks(isChecked) {
     setTasksNumberCompleted(number => isChecked ? number + 1 : number - 1)
@@ -21,7 +22,11 @@ function App() {
   function handleCreateNewTask(event) {
     event.preventDefault();
 
-    const newTask = { id: uuid4(), title: newTaskText, isCompleted: false }
+    const newTask = {
+      id: uuid4(),
+      title: newTaskText,
+      isCompleted: false
+    }
 
     setTasks([...tasks, newTask])
     setNewTaskText('');
@@ -32,6 +37,7 @@ function App() {
   }
 
   function DeleteTask(isChecked, idDeleted) {
+
 
     const taskWithoutDeleted = tasks.filter(task => {
       return task.id !== idDeleted
@@ -79,6 +85,7 @@ function App() {
                         onDeleteTask={DeleteTask}
                         isChecked={task.isCompleted}
                         onIncreaseNumberCompletedTasks={increaseNumberCompletedTasks}
+                        onHandleCreateNewTask={handleCreateNewTask}
                       />
                       )
                     })
