@@ -4,12 +4,12 @@ import styles from './TaskList.module.css'
 
 
 export function TaskList({ content, onDeleteTask, isChecked, onIncreaseNumberCompletedTasks, idDeleted }) {
+
     const [checked, setChecked] = useState(isChecked)
 
     function handleInputTask(event) {
-        const taskChecked = event.target.checked
-        setChecked(taskChecked)
-        onIncreaseNumberCompletedTasks(taskChecked)
+        setChecked(event.target.checked)
+        onIncreaseNumberCompletedTasks(event.target.checked)
     }
 
     function handleDeleteTask() {
