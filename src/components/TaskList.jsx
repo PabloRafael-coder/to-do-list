@@ -3,17 +3,17 @@ import { Trash } from '@phosphor-icons/react'
 import styles from './TaskList.module.css'
 
 
-export function TaskList({ content, onDeleteTask, isChecked, onIncreaseNumberCompletedTasks, idDeleted }) {
+export function TaskList({ content, onDeleteTask, isChecked, id, onToggleValueTaskCompletion }) {
 
     const [checked, setChecked] = useState(isChecked)
 
     function handleInputTask(event) {
         setChecked(event.target.checked)
-        onIncreaseNumberCompletedTasks(event.target.checked)
+        onToggleValueTaskCompletion(id, event.target.checked)
     }
 
     function handleDeleteTask() {
-        onDeleteTask(checked, idDeleted);
+        onDeleteTask(id);
     }
 
     return (
