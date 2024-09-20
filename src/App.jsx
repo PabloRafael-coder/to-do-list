@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { TaskList } from './components/TaskList';
 import { v4 as uuid4 } from 'uuid'
+
+import { TaskList } from './components/TaskList';
 
 import rocket from './assets/rocket.svg'
 import plus from './assets/plus.svg';
@@ -12,12 +13,6 @@ import "./global.css"
 function App() {
   const [tasks, setTasks] = useState([]);
   const [newTaskText, setNewTaskText] = useState('');
-  const [tasksNumberCompleted, setTasksNumberCompleted] = useState(0);
-
-
-  function increaseNumberCompletedTasks(isChecked) {
-    setTasksNumberCompleted(number => isChecked ? number + 1 : number - 1)
-  }
 
   function handleCreateNewTask(event) {
     event.preventDefault();
@@ -28,7 +23,8 @@ function App() {
       isCompleted: false
     }
 
-    setTasks([...tasks, newTask])
+    setTasks(tasks => [...tasks, newTask])
+
     setNewTaskText('');
   }
 
@@ -36,16 +32,27 @@ function App() {
     setNewTaskText(event.target.value);
   }
 
-  function DeleteTask(isChecked, idDeleted) {
-
+  function deleteTask(id) {
 
     const taskWithoutDeleted = tasks.filter(task => {
-      return task.id !== idDeleted
+      return task.id !== id
     })
 
     setTasks(taskWithoutDeleted)
-    setTasksNumberCompleted(number => isChecked ? number - 1 : number)
   }
+
+  function toggleValueTaskCompletion(id, checked) {
+    const newValueIsCompleted = tasks.map(tasks => {
+      return tasks.id === id ? { ...tasks, isCompleted: checked } : tasks
+    })
+
+    setTasks(newValueIsCompleted)
+  }
+
+
+  const taskCount = tasks.reduce((acc, cur) => {
+    return cur.isCompleted ? acc + 1 : acc
+  }, 0)
 
   return (
     <>
@@ -71,7 +78,7 @@ function App() {
           <div className={styles.taskListContainer}>
             <header className={styles.taskListHeader}>
               <p className={styles.headerTextCreated}>Tarefas criadas<span>{tasks.length}</span></p>
-              <p className={styles.headerTextCompleted}>Concluídas<span>{tasksNumberCompleted} de {tasks.length}</span></p>
+              <p className={styles.headerTextCompleted}>Concluídas<span> {taskCount} de {tasks.length}</span></p>
             </header>
             <div className={styles.taskListCreate}>
               {
@@ -80,12 +87,12 @@ function App() {
                     tasks.map(task => {
                       return (<TaskList
                         key={task.id}
-                        idDeleted={task.id}
+                        id={task.id}
                         content={task.title}
-                        onDeleteTask={DeleteTask}
+                        onDeleteTask={deleteTask}
                         isChecked={task.isCompleted}
-                        onIncreaseNumberCompletedTasks={increaseNumberCompletedTasks}
                         onHandleCreateNewTask={handleCreateNewTask}
+                        onToggleValueTaskCompletion={toggleValueTaskCompletion}
                       />
                       )
                     })
